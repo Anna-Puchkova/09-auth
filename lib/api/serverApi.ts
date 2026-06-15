@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { api } from "./api";
 import { Note } from "@/types/note";
 import { User } from "@/types/user";
-
+import { AxiosResponse } from "axios";
 export interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
@@ -54,12 +54,12 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
   return data;
 };
 
-export const checkSession = async () => {
+export const checkSession = async (): Promise<AxiosResponse> => {
   const config = await getCookieConfig();
 
   const response = await api.get("/auth/session", config);
 
-  return response.data;
+  return response;
 };
 
 export const getMe = async (): Promise<User> => {

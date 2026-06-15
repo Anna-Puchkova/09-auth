@@ -43,6 +43,10 @@ export async function proxy(request: NextRequest) {
           }
         }
       }
+
+      if (!accessToken) {
+        return NextResponse.redirect(new URL("/sign-in", request.url));
+      }
     } catch {
       return NextResponse.redirect(new URL("/sign-in", request.url));
     }

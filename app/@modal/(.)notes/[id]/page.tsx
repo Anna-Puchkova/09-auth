@@ -1,6 +1,6 @@
 import Modal from "@/components/Modal/Modal";
 import { fetchNoteById } from "@/lib/api";
-import NoteDetailsPageClient from "@/app/notes/[id]/NoteDetails.client";
+import NoteDetailsPageClient from "@/app/(private routes)/notes/[id]/NoteDetails.client";
 
 import {
   HydrationBoundary,

@@ -1,4 +1,4 @@
-import { fetchNoteById } from "@/lib/api/clientApi";
+import { fetchNoteById } from "@/lib/api/serverApi";
 import NoteDetailsPageClient from "./NoteDetails.client";
 
 import {
@@ -13,23 +13,17 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
-  const note = await fetchNoteById(params.id);
-
-  const title = note.title;
-  const description = note.content.slice(0, 100);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const note = await fetchNoteById(id);
 
   return {
-    title,
-    description,
+    title: note.title,
+    description: note.content.slice(0, 100),
     openGraph: {
-      title,
-      description,
-      url: `https://07-routing-nextjs-five-ruby.vercel.app/notes/${params.id}`,
+      title: note.title,
+      description: note.content.slice(0, 100),
+      url: `https://07-routing-nextjs-five-ruby.vercel.app/notes/${id}`,
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",

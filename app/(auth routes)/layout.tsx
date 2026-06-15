@@ -1,5 +1,18 @@
-import { ReactNode } from "react";
+"use client";
 
-export default function Layout({ children }: { children: ReactNode }) {
+import { ReactNode, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.refresh();
+  }, [router]);
+
   return <>{children}</>;
 }

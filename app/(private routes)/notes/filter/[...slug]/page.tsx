@@ -6,8 +6,9 @@ import {
 
 import type { NoteTag } from "@/types/note";
 import type { Metadata } from "next";
-import { fetchNotes } from "@/lib/api/clientApi";
+
 import NotesClient from "./Notes.client";
+import { fetchNotes } from "@/lib/api/serverApi";
 
 type Params = {
   slug: string[];

@@ -1,5 +1,4 @@
 import Modal from "@/components/Modal/Modal";
-import { fetchNoteById } from "@/lib/api";
 import NoteDetailsPageClient from "@/app/(private routes)/notes/[id]/NoteDetails.client";
 
 import {
@@ -8,12 +7,14 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 
+import { fetchNoteById } from "@/lib/api/serverApi";
+
 interface Props {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default async function NoteModalPage({ params }: Props) {
-  const { id } = await params;
+  const { id } = params;
 
   const queryClient = new QueryClient();
 
